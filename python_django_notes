@@ -1,0 +1,104 @@
+Python Django: 
+	1.Python server side framework
+	2.MVT Design Pattern
+	MVT : Model, View, Template
+	API : Janfo REST Framework
+Other Framework in python: Flask,Cherry pie, web2py, Pyramid	
+
+MVT: 
+	Model: 	Data Access Layer(Database )
+	Template: Presentation Layer(UI sode)
+	View: Business Logic
+	
+	Working: From user request hit to site , it go to views and ehen to database and from datbase got to view and then to template.
+	
+	
+pip install virtualenv 
+and then create env using (virtualenv env)
+source env/bin/activate
+deactivate
+(every time we have to activate our environment)
+
+
+process : django-admin startproject studybud (create project with name studybud)
+	python manage.py runserver
+	python manage.py startapp base(create folder base)
+	
+files: wsgi.py=> actual server file
+	urls.py => routes file
+	asgi.py => for async support
+	settings.py=> core project configuration
+	
+	
+Template inheritance :
+	1. include:
+		{% include 'main.html'%}
+	2.extends: 
+		{% extends 'main.html'%}
+		
+Database: 
+	python manage.py migrate
+	got to models.py=>
+		create class of model and aa paremeter
+	1. auto_now use for date and timestamp : it always update timestamp
+	2. auto_now_add : It only once set timestamp
+	
+	For new migration: python manage.py makemigrations
+	again : python manage.py migrate (to migarate)
+	
+	Note: Jango already had builtin user model
+	
+GET and POST methods in python:
+	POST method requires csrf token but GET doesn't
+	
+Qlookup in jango:
+	from django.db.models import Q
+	
+login and registration:
+	django has its builtin login and registration.But we also can create custom.
+	1. from django.contrib.auth import authenticate,login,logout
+	for login : login(request,user)
+	for logout : logout(request)
+	
+flash messages:
+	from django.contrib import messages
+	use to give error any messages
+	messages.error(request, "Username or Password does not exist.")
+	
+restricted pages:
+	from django.contrib.auth.decorators import login_required  we use decoraters for that 
+	 if want to restrcit any page we use @login_required(login_url='login') above that action  as below
+	 @login_required(login_url='login')
+	def createRoom(request):   here if  i am not login then and i amcreateing room it will ask first login because of decorators which used for restrct page.
+	
+user creation in jango:
+	from django.contrib.auth.forms import UserCreationForm import this and use 
+	UserCreationForm(request.POST)
+	user = form.save(commit=False) here commit=False to get object of created user
+	
+Ordering in python:
+	room_messages= room.message_set.all().order_by('-created') to get all data in descending order of created
+	room_messages= room.message_set.all().order_by('created') to get all data in aescending order of created
+	
+Djanog REST framework:
+	
+	
+relations:
+	many_to_one use _set.all()   ex. room_messages= room.message_set.all()
+	many_to_many use .all()    ex. participants = room.participants.all()
+	
+Class_base views vs function base views:
+
+
+
+corsheaders: allowed to access endpoints
+
+pilow in jango:  used for images
+
+
+abstract user:
+
+
+inbuilt admin:
+
+
